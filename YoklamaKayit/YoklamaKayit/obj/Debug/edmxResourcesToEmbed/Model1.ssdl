@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DbOkulModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="ADMIN">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="KULLANICIAD" Type="nvarchar" MaxLength="50" />
+    <Property Name="SIFRE" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="BOLUMLER">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="BOLUM" Type="nvarchar" MaxLength="255" />
+    <Property Name="FAKULTE" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DERSLER">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DERSADI" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="FAKULTELER">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FAKULTE" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="OGRDERS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DERSID" Type="int" Nullable="false" />
+    <Property Name="OGRID" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="OGRENCI">
+    <Key>
+      <PropertyRef Name="NUMARA" />
+    </Key>
+    <Property Name="NUMARA" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="AD" Type="nvarchar" MaxLength="100" />
+    <Property Name="FAKULTE" Type="nvarchar" MaxLength="100" />
+    <Property Name="BOLUM" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <Association Name="FK_BOLUMLER_FAKULTELER">
+    <End Role="FAKULTELER" Type="Self.FAKULTELER" Multiplicity="1" />
+    <End Role="BOLUMLER" Type="Self.BOLUMLER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FAKULTELER">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="BOLUMLER">
+        <PropertyRef Name="FAKULTE" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OGRDERS_DERSLER">
+    <End Role="DERSLER" Type="Self.DERSLER" Multiplicity="1" />
+    <End Role="OGRDERS" Type="Self.OGRDERS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DERSLER">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="OGRDERS">
+        <PropertyRef Name="DERSID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DbOkulModelStoreContainer">
+    <EntitySet Name="ADMIN" EntityType="Self.ADMIN" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BOLUMLER" EntityType="Self.BOLUMLER" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DERSLER" EntityType="Self.DERSLER" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FAKULTELER" EntityType="Self.FAKULTELER" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OGRDERS" EntityType="Self.OGRDERS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OGRENCI" EntityType="Self.OGRENCI" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_BOLUMLER_FAKULTELER" Association="Self.FK_BOLUMLER_FAKULTELER">
+      <End Role="FAKULTELER" EntitySet="FAKULTELER" />
+      <End Role="BOLUMLER" EntitySet="BOLUMLER" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OGRDERS_DERSLER" Association="Self.FK_OGRDERS_DERSLER">
+      <End Role="DERSLER" EntitySet="DERSLER" />
+      <End Role="OGRDERS" EntitySet="OGRDERS" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

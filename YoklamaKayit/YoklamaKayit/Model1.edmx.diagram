@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d07d57234f2842c38e9aec1d8de5ea3e" Name="Diagram1">
+        <EntityTypeShape EntityType="DbOkulModel.BOLUMLER" Width="1.5" PointX="7" PointY="2.75" />
+        <EntityTypeShape EntityType="DbOkulModel.FAKULTELER" Width="1.5" PointX="9.5" PointY="2.875" />
+        <AssociationConnector Association="DbOkulModel.FK_BOLUMLER_FAKULTELER" />
+        <EntityTypeShape EntityType="DbOkulModel.OGRENCI" Width="1.5" PointX="4" PointY="2.75" />
+        <EntityTypeShape EntityType="DbOkulModel.ADMIN" Width="1.5" PointX="11.625" PointY="2.875" />
+        <EntityTypeShape EntityType="DbOkulModel.DERSLER" Width="1.5" PointX="6.75" PointY="4.875" />
+        <EntityTypeShape EntityType="DbOkulModel.OGRDERS" Width="1.5" PointX="9" PointY="4.75" />
+        <AssociationConnector Association="DbOkulModel.FK_OGRDERS_DERSLER" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

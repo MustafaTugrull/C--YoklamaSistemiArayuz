@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DbOkulModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="DbOkulEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="BOLUMLER" EntityType="DbOkulModel.BOLUMLER" />
+    <EntitySet Name="FAKULTELER" EntityType="DbOkulModel.FAKULTELER" />
+    <AssociationSet Name="FK_BOLUMLER_FAKULTELER" Association="DbOkulModel.FK_BOLUMLER_FAKULTELER">
+      <End Role="FAKULTELER" EntitySet="FAKULTELER" />
+      <End Role="BOLUMLER" EntitySet="BOLUMLER" />
+    </AssociationSet>
+    <EntitySet Name="OGRENCI" EntityType="DbOkulModel.OGRENCI" />
+    <EntitySet Name="ADMIN" EntityType="DbOkulModel.ADMIN" />
+    <EntitySet Name="DERSLER" EntityType="DbOkulModel.DERSLER" />
+    <EntitySet Name="OGRDERS" EntityType="DbOkulModel.OGRDERS" />
+    <AssociationSet Name="FK_OGRDERS_DERSLER" Association="DbOkulModel.FK_OGRDERS_DERSLER">
+      <End Role="DERSLER" EntitySet="DERSLER" />
+      <End Role="OGRDERS" EntitySet="OGRDERS" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="BOLUMLER">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="BOLUM" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="FAKULTE" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="FAKULTELER" Relationship="DbOkulModel.FK_BOLUMLER_FAKULTELER" FromRole="BOLUMLER" ToRole="FAKULTELER" />
+  </EntityType>
+  <EntityType Name="FAKULTELER">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FAKULTE" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="BOLUMLER" Relationship="DbOkulModel.FK_BOLUMLER_FAKULTELER" FromRole="FAKULTELER" ToRole="BOLUMLER" />
+  </EntityType>
+  <Association Name="FK_BOLUMLER_FAKULTELER">
+    <End Type="DbOkulModel.FAKULTELER" Role="FAKULTELER" Multiplicity="1" />
+    <End Type="DbOkulModel.BOLUMLER" Role="BOLUMLER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FAKULTELER">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="BOLUMLER">
+        <PropertyRef Name="FAKULTE" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="OGRENCI">
+    <Key>
+      <PropertyRef Name="NUMARA" />
+    </Key>
+    <Property Name="NUMARA" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="AD" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="FAKULTE" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="BOLUM" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="ADMIN">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="KULLANICIAD" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SIFRE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="DERSLER">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DERSADI" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="OGRDERS" Relationship="DbOkulModel.FK_OGRDERS_DERSLER" FromRole="DERSLER" ToRole="OGRDERS" />
+  </EntityType>
+  <EntityType Name="OGRDERS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DERSID" Type="Int32" Nullable="false" />
+    <Property Name="OGRID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="DERSLER" Relationship="DbOkulModel.FK_OGRDERS_DERSLER" FromRole="OGRDERS" ToRole="DERSLER" />
+  </EntityType>
+  <Association Name="FK_OGRDERS_DERSLER">
+    <End Type="DbOkulModel.DERSLER" Role="DERSLER" Multiplicity="1" />
+    <End Type="DbOkulModel.OGRDERS" Role="OGRDERS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DERSLER">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="OGRDERS">
+        <PropertyRef Name="DERSID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

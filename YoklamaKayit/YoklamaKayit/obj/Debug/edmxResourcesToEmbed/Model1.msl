@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DbOkulModelStoreContainer" CdmEntityContainer="DbOkulEntities1">
+    <EntitySetMapping Name="BOLUMLER">
+      <EntityTypeMapping TypeName="DbOkulModel.BOLUMLER">
+        <MappingFragment StoreEntitySet="BOLUMLER">
+          <ScalarProperty Name="FAKULTE" ColumnName="FAKULTE" />
+          <ScalarProperty Name="BOLUM" ColumnName="BOLUM" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FAKULTELER">
+      <EntityTypeMapping TypeName="DbOkulModel.FAKULTELER">
+        <MappingFragment StoreEntitySet="FAKULTELER">
+          <ScalarProperty Name="FAKULTE" ColumnName="FAKULTE" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OGRENCI">
+      <EntityTypeMapping TypeName="DbOkulModel.OGRENCI">
+        <MappingFragment StoreEntitySet="OGRENCI">
+          <ScalarProperty Name="BOLUM" ColumnName="BOLUM" />
+          <ScalarProperty Name="FAKULTE" ColumnName="FAKULTE" />
+          <ScalarProperty Name="AD" ColumnName="AD" />
+          <ScalarProperty Name="NUMARA" ColumnName="NUMARA" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ADMIN">
+      <EntityTypeMapping TypeName="DbOkulModel.ADMIN">
+        <MappingFragment StoreEntitySet="ADMIN">
+          <ScalarProperty Name="SIFRE" ColumnName="SIFRE" />
+          <ScalarProperty Name="KULLANICIAD" ColumnName="KULLANICIAD" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DERSLER">
+      <EntityTypeMapping TypeName="DbOkulModel.DERSLER">
+        <MappingFragment StoreEntitySet="DERSLER">
+          <ScalarProperty Name="DERSADI" ColumnName="DERSADI" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OGRDERS">
+      <EntityTypeMapping TypeName="DbOkulModel.OGRDERS">
+        <MappingFragment StoreEntitySet="OGRDERS">
+          <ScalarProperty Name="OGRID" ColumnName="OGRID" />
+          <ScalarProperty Name="DERSID" ColumnName="DERSID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
